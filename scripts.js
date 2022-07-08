@@ -1,15 +1,48 @@
-function Book (name, author, pages, status) {
-    this.name = name
-    this.auther = author
-    this.pages = pages
-    this.status = status
-    this.stateBook = function() {
-        console.log(`${name} by ${author}, ${pages} long, ${status}`)
-    }
+let library;
+
+const DEFAULT_DATA = [
+    { 
+        name: "The Hobbit", 
+        author: "J.R.R Tolkien", 
+        pages: "934", 
+        status: "Unread"},
+    {
+        name: "Another Book", 
+        author: "J.R.R Tolkien", 
+        pages: "934", 
+        status: "Unread"
+    },
+    {
+        name: "A different Book", 
+        author: "J.R.R Tolkien", 
+        pages: "934", 
+        status: "Unread"
+    },
+];
+
+const addButton = document.getElementById('add-button')
+const deleteButton = document.getElementsByClassName('delete-button')
+
+addButton.addEventListener('click', addRow)
+
+deleteButton.addEventListener('click', deleteRow)
+
+function addRow() {
+    var myName = document.getElementById("name");
+    var age = document.getElementById("age")
+    var table = document.getElementBy("myTableData")
+
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount)
+
+    row.insertCell(0).innerHTML = '<button class="delete-button">Delete</button>'
+    row.insertCell(1).innerHTML = myName.value;
+    row.insertCell(2).innerHTML = age.value;
+    console.log(rowCount)
 }
 
-const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet')
-const book2 = new Book('A different Book', 'Steven S', '327', 'not read yet')
-const book3 = new Book('A seperate Book', 'Karol K', '871', 'not read yet')
-
-console.table([book1, book2, book3])
+function deleteRow(obj) {
+    var index = obj.parentNode.parentNode;
+    var table = document.getElementById("myTableData");
+    table.deleteRow(index);
+}

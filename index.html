@@ -16,21 +16,30 @@
             </tr>
             <tr>
                 <td>Age</td>
-                <td><input type="text" id="Age">
-                <input type="button" id="add" value="Add"></td>
+                <td><input type="text" id="age">
+                <button id="add-button">Add</button></td>
             </tr>
         </table>
     </div>
     <div class="my-data">
         <b>Current data in the table
-            <table>
-                
+            <table id="myTableData">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Name</td>
+                    <td>Age</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>Age</td>
+                    <button class="delete-button">Delete</button>
+                </tr>
             </table>
         </b>
     </div>
     <div class="my-dynamic-table">
 
     </div>
-    <script src="./scripts.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>
