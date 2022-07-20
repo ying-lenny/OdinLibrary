@@ -20,7 +20,8 @@ const DEFAULT_DATA = [
     },
 ];
 
-const $name = document.querySelector($name)
+const $name = document.querySelector($name);
+const $author = document.querySelector($author);
 
 const addButton = document.getElementById('add-button')
 const deleteButton = document.getElementsByClassName('delete-button')
