@@ -20,8 +20,16 @@ const DEFAULT_DATA = [
     },
 ];
 
-const $name = document.querySelector($name);
-const $author = document.querySelector($author);
+const $name = document.querySelector("name");
+const $author = document.querySelector("#author");
+const $status = document.querySelector("#status");
+const $tableBody = document.querySelector("#book-table-body")
+const $form = document.querySelector("#form").addEventListener("Submit", (e) => {
+    e.preventDefault();
+    // addBookToLibrary();
+    // render();
+    // clearForm();
+})
 
 const addButton = document.getElementById('add-button')
 const deleteButton = document.getElementsByClassName('delete-button')
