@@ -26,39 +26,66 @@ const $status = document.querySelector("#status");
 const $tableBody = document.querySelector("#book-table-body")
 const $form = document.querySelector("#form").addEventListener("Submit", (e) => {
     e.preventDefault();
-    // addBookToLibrary();
-    // render();
-    // clearForm();
+    addBookToLibrary();
+    render();
+    clearForm();
 })
 
 const $table = document.querySelector("table")
     .addEventListener("click", (e) => {
-        
-})
+        const currentTarget = e.target.parentNode.parentNode.childNodes[1];
+        if (e.target.innerHTML == "delete") {
+            if (confirm('are you sure you wish to delete ${currentTarget.innerText}'))
+                deleteBook(findBook(library, currentTarget.innerText))
+        }
+        if (e.target.classList.contains("status-button")) {
+            changeStatus(findBook(library, currentTarget.innerText))
+        }
+        updateLocalStorage();
+        render();
+    })
 
-// const addButton = document.getElementById('add-button')
-// const deleteButton = document.getElementsByClassName('delete-button')
+class Book {
+    constructor(name, author, status) {
+        this.name = name;
+        this.author = author;
+        this.status = status;
+    }
+}
 
-// addButton.addEventListener('click', addRow)
+function addBookToLibrary() {
+    if ($name.value === 0 || $author.value.length === 0) {
+        alert("Please fill in all the fields properly")
+        return;
+    }
+    const newBook = new Book($name.value, $author.value, $status.value);
 
-// deleteButton.addEventListener('click', deleteRow)
+    library.push(newBook);
+    updateLocalStorage();
+}
 
-// function addRow() {
-//     var myName = document.getElementById("name");
-//     var age = document.getElementById("age")
-//     var table = document.getElementBy("myTableData")
+function changeStatus(book) {
+    if (library[book].status === "read") {
+        library[book].status = "not read";
+    } else library[book].status = "read";
+}
 
-//     var rowCount = table.rows.length;
-//     var row = table.insertRow(rowCount)
+function deleteBook(currentBook) {
+    library.splice(currentBook, currentBook + 1);
+}
 
-//     row.insertCell(0).innerHTML = '<button class="delete-button">Delete</button>'
-//     row.insertCell(1).innerHTML = myName.value;
-//     row.insertCell(2).innerHTML = age.value;
-//     console.log(rowCount)
-// }
+function findBook(libraryArray, name) {
+    if (libraryArray.length === 0 || libraryArray === null) {
+        return;
+    }
+    for (book of library)
+        if (book.name === name) {
+            return libraryArray.indexOf(book);
+        }
+}
 
-// function deleteRow(obj) {
-//     var index = obj.parentNode.parentNode;
-//     var table = document.getElementById("myTableData");
-//     table.deleteRow(index);
-// }
+function clearForm() {
+    $name.value = "";
+    $author.value = "";
+}
+
