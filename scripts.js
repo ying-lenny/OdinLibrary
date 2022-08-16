@@ -31,29 +31,34 @@ const $form = document.querySelector("#form").addEventListener("Submit", (e) => 
     // clearForm();
 })
 
-const addButton = document.getElementById('add-button')
-const deleteButton = document.getElementsByClassName('delete-button')
+const $table = document.querySelector("table")
+    .addEventListener("click", (e) => {
+        
+})
 
-addButton.addEventListener('click', addRow)
+// const addButton = document.getElementById('add-button')
+// const deleteButton = document.getElementsByClassName('delete-button')
 
-deleteButton.addEventListener('click', deleteRow)
+// addButton.addEventListener('click', addRow)
 
-function addRow() {
-    var myName = document.getElementById("name");
-    var age = document.getElementById("age")
-    var table = document.getElementBy("myTableData")
+// deleteButton.addEventListener('click', deleteRow)
 
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount)
+// function addRow() {
+//     var myName = document.getElementById("name");
+//     var age = document.getElementById("age")
+//     var table = document.getElementBy("myTableData")
 
-    row.insertCell(0).innerHTML = '<button class="delete-button">Delete</button>'
-    row.insertCell(1).innerHTML = myName.value;
-    row.insertCell(2).innerHTML = age.value;
-    console.log(rowCount)
-}
+//     var rowCount = table.rows.length;
+//     var row = table.insertRow(rowCount)
 
-function deleteRow(obj) {
-    var index = obj.parentNode.parentNode;
-    var table = document.getElementById("myTableData");
-    table.deleteRow(index);
-}
+//     row.insertCell(0).innerHTML = '<button class="delete-button">Delete</button>'
+//     row.insertCell(1).innerHTML = myName.value;
+//     row.insertCell(2).innerHTML = age.value;
+//     console.log(rowCount)
+// }
+
+// function deleteRow(obj) {
+//     var index = obj.parentNode.parentNode;
+//     var table = document.getElementById("myTableData");
+//     table.deleteRow(index);
+// }
