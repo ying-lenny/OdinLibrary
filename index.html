@@ -9,7 +9,7 @@
 <body>
     <div class="my-form">
         <b>Simple form for a book's name, author, page count, and read status</b>
-        <table>
+        <form>
             <tr>
                 <td>Name</td>
                 <td><input type="text" id="name"> </td>
@@ -19,35 +19,28 @@
                 <td><input type="text" id="author"> </td>
             </tr>
             <tr>
-                <td>Page count</td>
-                <td><input type="text" id="pages"> </td>
-            </tr>
-            <tr>
                 <td>Read Status</td>
-                <td><input type="text" id="status">
-                <button id="add-button">Add</button></td>
+                <td>
+                    <select>
+                        <option value="read">Read</option>
+                        <option value="not read">Not Read</option>
+                    </select>
+                    <input type="submit" id="status" value="submit"></td>
+                </td>
             </tr> 
-        </table>
+        </form>
     </div>
     <div class="my-data">
-        <b>Current data in the table
+        <b>Current data in the table</b>
             <table id="myTableData">
                 <tr>
                     <td>&nbsp;</td>
                     <td>Name</td>
                     <td>Age</td>
                 </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>Age</td>
-                    <button class="delete-button">Delete</button>
-                </tr>
             </table>
-        </b>
     </div>
-    <div class="my-dynamic-table">
 
-    </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>

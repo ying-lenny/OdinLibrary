@@ -1,30 +1,17 @@
-let library;
+let library = [];
+class Book {
+    constructor(name, author, status) {
+        this.name = name;
+        this.author = author;
+        this.status = status;
+    }
+}
 
-const DEFAULT_DATA = [
-    { 
-        name: "The Hobbit", 
-        author: "J.R.R Tolkien", 
-        pages: "934", 
-        status: "Unread"},
-    {
-        name: "Another Book", 
-        author: "J.R.R Tolkien", 
-        pages: "934", 
-        status: "Unread"
-    },
-    {
-        name: "A different Book", 
-        author: "J.R.R Tolkien", 
-        pages: "934", 
-        status: "Unread"
-    },
-];
-
-const $name = document.querySelector("name");
+const $name = document.querySelector("#name");
 const $author = document.querySelector("#author");
 const $status = document.querySelector("#status");
-const $tableBody = document.querySelector("#book-table-body")
-const $form = document.querySelector("#form").addEventListener("Submit", (e) => {
+const $tableBody = document.querySelector("#myTableData");
+const $form = document.querySelector(".my-form").addEventListener("submit", (e) => {
     e.preventDefault();
     addBookToLibrary();
     render();
@@ -35,7 +22,7 @@ const $table = document.querySelector("table")
     .addEventListener("click", (e) => {
         const currentTarget = e.target.parentNode.parentNode.childNodes[1];
         if (e.target.innerHTML == "delete") {
-            if (confirm('are you sure you wish to delete ${currentTarget.innerText}'))
+            if (confirm('Are you sure you wish to delete ${currentTarget.innerText}'))
                 deleteBook(findBook(library, currentTarget.innerText))
         }
         if (e.target.classList.contains("status-button")) {
@@ -44,14 +31,6 @@ const $table = document.querySelector("table")
         updateLocalStorage();
         render();
     })
-
-class Book {
-    constructor(name, author, status) {
-        this.name = name;
-        this.author = author;
-        this.status = status;
-    }
-}
 
 function addBookToLibrary() {
     if ($name.value === 0 || $author.value.length === 0) {
@@ -89,3 +68,32 @@ function clearForm() {
     $author.value = "";
 }
 
+function updateLocalStorage() {
+    localStorage.setItem('library', JSON.stringify(library));
+}
+
+function checkLocalStorage() {
+    if (localStorage.getItem('library')) {
+        library = JSON.parse(localStorage.getItem('library'));
+    } else {
+        library = DEFAULT_DATA
+    }
+}
+
+function render() {
+    checkLocalStorage();
+    $tableBody.innerHTML = "";
+    library.forEach((book) => {
+        const htmlBook = `
+        <tr>
+            <td>${book.name}</td>
+            <td>${book.author}</td>
+            <td><button class = "status-button">${book.status}</button></td>
+            <td><button class = "delete">Delete</button></td>
+        <tr>
+        `;
+        $tableBody.insertAdjacentHTML("afterbegin", htmlBook)
+    });
+}
+
+render()
