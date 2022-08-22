@@ -21,8 +21,8 @@ const $form = document.querySelector(".my-form").addEventListener("submit", (e) 
 const $table = document.querySelector("table")
     .addEventListener("click", (e) => {
         const currentTarget = e.target.parentNode.parentNode.childNodes[1];
-        if (e.target.innerHTML == "delete") {
-            if (confirm('Are you sure you wish to delete ${currentTarget.innerText}'))
+        if (e.target.innerHTML == "Delete") {
+            if (confirm(`Are you sure you wish to delete ${currentTarget.innerText}`))
                 deleteBook(findBook(library, currentTarget.innerText))
         }
         if (e.target.classList.contains("status-button")) {
@@ -82,7 +82,13 @@ function checkLocalStorage() {
 
 function render() {
     checkLocalStorage();
-    $tableBody.innerHTML = "";
+    $tableBody.innerHTML = `
+        <tr>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Status</td>
+        </tr>`;
+
     library.forEach((book) => {
         const htmlBook = `
         <tr>
@@ -92,7 +98,7 @@ function render() {
             <td><button class = "delete">Delete</button></td>
         <tr>
         `;
-        $tableBody.insertAdjacentHTML("afterbegin", htmlBook)
+        $tableBody.insertAdjacentHTML("beforeend", htmlBook)
     });
 }
 
